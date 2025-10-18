@@ -1,0 +1,9 @@
+{
+	"start": "Connection à la base de données en cours...",
+	"success": "Réussite de la connexion à la DB!",
+	"connection_error": "Impossible de se connecter à la base de données:\n\t",
+	"init_error": "Court-circuit de la connexion à la DB:\n\t",
+	"seed_done": "Les données initiales ont été implantées avec succès",
+	"seed_error": "Une erreur s'est produite durant la population:",
+	"die": "La connexion à la base de données a été fermée."
+}

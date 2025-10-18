@@ -1,0 +1,9 @@
+{
+	"start": "Connection attempt to database...",
+	"success": "The connection was successfully established.",
+	"connection_error": "Error during connection to the database:\n\t",
+	"init_error": "Error before connection to database:\n\t",
+	"seed_done": "The seeding was completed.",
+	"seed_error": "There was an error during seeding:",
+	"die": "The database connection was closed."
+}

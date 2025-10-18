@@ -1,0 +1,5 @@
+{
+	"start": "Le serveur a démarré avec succès à l'adresse http://localhost:",
+	"error": "Le serveur a echoué à démarrer.",
+	"close": "Le serveur s'est fermé avec succès."
+}

@@ -1,0 +1,5 @@
+{
+	"start": "Kafka is up and running, on http://localhost:",
+	"error": "Kafka failed to start.",
+	"close": "Kafka closed successfully."
+}

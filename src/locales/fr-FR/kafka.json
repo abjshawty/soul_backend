@@ -1,0 +1,5 @@
+{
+	"start": "Connexion au broker Kafka effectuée.",
+	"error": "Erreur lors de la connexion au broker Kafka.",
+	"close": "Connexion au broker Kafka fermée."
+}
