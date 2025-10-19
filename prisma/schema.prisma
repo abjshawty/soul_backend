@@ -16,6 +16,7 @@ model Product {
     category        String
     image           String
     description     String
+    support         String            @default("PC")
     createdAt       DateTime          @default(now())
     updatedAt       DateTime          @updatedAt
     orderedProducts OrderedProducts[]

@@ -100,11 +100,14 @@ export const create = {
             description: {
                 type: 'string'
             },
+            support: {
+                type: 'string'
+            },
             image: {
                 type: 'string'
             },
         },
-        required: ['title', 'price', 'category', 'genre', 'description', 'image']
+        required: ['title', 'price', 'category', 'genre', 'description', 'support', 'image']
     }
 };
 
@@ -133,6 +136,9 @@ export const update = {
                 type: 'string'
             },
             description: {
+                type: 'string'
+            },
+            support: {
                 type: 'string'
             },
             image: {
