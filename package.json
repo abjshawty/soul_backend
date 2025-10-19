@@ -1,8 +1,8 @@
 {
-    "name": "server-template",
+    "name": "soul-backend",
     "version": "0.3.0",
     "private": true,
-    "description": "Functional template for a backend server, using Fastify and Prisma, and able to handle Kafka",
+    "description": "Backend for the Soul shop",
     "keywords": [
         "server",
         "template",
@@ -13,18 +13,19 @@
     "main": "build/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/abjshawty/server.git"
+        "url": "https://github.com/abjshawty/soul_backend.git"
     },
     "scripts": {
         "build": "tsc",
-        "dev": "nodemon src/index.ts",
+        "dev": "nodemon --watch .env src/index.ts",
         "start": "node build/index.js",
         "test": "jest --watchAll",
-        "gen": "npx prisma generate",
         "format": "prettier --write ./src",
-        "migrate": "npx prisma migrate dev --name dev",
-        "reset": "npm i && npx prisma migrate reset --force && npx prisma migrate dev --name dev",
-        "create": "npx prisma generate && ts-node src/helpers/generator.ts && prettier --write ./src"
+        "db:gen": "prisma generate",
+        "db:migrate": "prisma migrate dev --name dev",
+        "db:deploy": "prisma migrate deploy",
+        "db:reset": "npm i && prisma migrate reset --force && prisma migrate dev --name dev",
+        "create": "prisma generate && ts-node src/helpers/generator.ts && prettier --write ./src"
     },
     "dependencies": {
         "@fastify/cors": ">=11.0.1",
@@ -33,15 +34,17 @@
         "@fastify/multipart": ">=9.0.3",
         "@fastify/swagger": ">=9.x",
         "@fastify/swagger-ui": ">=5.x",
-        "@prisma/client": "6.6.0",
+        "@prisma/client": "^6.17.1",
         "death": ">=1.1.0",
         "dotenv": ">=16.5.0",
         "exceljs": ">=4.4.0",
         "fastify": ">=5.3.3",
         "json2csv": ">=6.0.0-alpha.2",
         "kafkajs": ">=2.2.4",
+        "nodemailer": "^7.0.9",
         "pdfkit-table": "^0.1.99",
         "prettier": "^3.5.3",
+        "prisma": "^6.17.1",
         "redis": "^5.5.6"
     },
     "devDependencies": {

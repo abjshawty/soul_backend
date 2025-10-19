@@ -4,3 +4,4 @@ build
 src/logs/*.log
 prisma/migrations
 package-lock.json
+yarn.lock

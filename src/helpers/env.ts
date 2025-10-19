@@ -15,10 +15,18 @@ export const jwtPublicKey: string = process.env.JWT_PUBLIC_KEY || 'secret';
 export const jwtSecret: string = process.env.JWT_SECRET || 'secret';
 export const kafkaBroker: string = process.env.KAFKA_BROKER || '';
 export const kafkaClientId: string = process.env.KAFKA_CLIENT_ID || '';
-export const kafkaGroupId: string = process.env.KAFKA_GROUP_ID || '';
+export const kafkaGroupId: string = process.env.KAFKA_GROUP_ID || 'none';
 export const language: string = process.env.LANGUAGE || 'en-US';
 export const murder: () => void = () => process.exit(0);
 export const port: number = process.env.APP_PORT ? parseInt(process.env.APP_PORT) : 3000;
 export const redisUrl: string = process.env.REDIS_URL || '';
 export const topics: string[] = process.env.KAFKA_TOPICS ? process.env.KAFKA_TOPICS.split(',') : [];
 export const role: role = (process.env.KAFKA_ROLE as role) || 'none';
+
+export const mailHost: string = process.env.MAIL_HOST || 'smtp.titan.email';
+export const mailPort: number = process.env.MAIL_PORT ? parseInt(process.env.MAIL_PORT) : 587;
+export const mailSecure: boolean = process.env.MAIL_SECURE === '1' || false;
+export const mailUser: string = process.env.MAIL_USER || '';
+export const mailPassword: string = process.env.MAIL_PASSWORD || '';
+export const shop_email: string = process.env.SHOP_EMAIL || 'timmykb@protonmail.com';
+
