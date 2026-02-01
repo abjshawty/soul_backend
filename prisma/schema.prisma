@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Product {
-    id              String            @id @default(uuid())
+    id              Int               @id @default(autoincrement())
     title           String
     price           Float
     rating          Float             @default(0)
@@ -33,26 +33,26 @@ model Code {
 
 model Order {
     id            String            @id @default(uuid())
-    name          String
-    email         String
-    cardNumber    String
-    expiry        String
-    cvv           String
-    phoneNumber   String
-    paymentMethod String
+    customerName  String
+    customerEmail String
+    cardNumber    String?
+    expiry        String?
+    cvv           String?
+    phoneNumber   String?
+    paymentMethod String?
     items         OrderedProducts[]
 
-    code       String
-    total      Float
-    assignedTo String
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
+    code        String
+    totalAmount Float
+    assignedTo  String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }
 
 model OrderedProducts {
     id        String   @id @default(uuid())
     orderId   String
-    productId String
+    productId Int
     quantity  Int
     order     Order    @relation(fields: [orderId], references: [id])
     product   Product  @relation(fields: [productId], references: [id])

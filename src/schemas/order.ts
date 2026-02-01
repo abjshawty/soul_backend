@@ -69,48 +69,44 @@ export const create = {
     body: {
         type: 'object',
         properties: {
-            name: {
-                type: 'string'
+            customerName: {
+                type: 'string',
+                minLength: 1
             },
-            email: {
+            customerEmail: {
                 type: 'string',
                 format: 'email'
             },
-            cardNumber: {
-                type: 'string'
-            },
-            expiry: {
-                type: 'string',
-            },
-            cvv: {
-                type: 'string'
-            },
-            phoneNumber: {
-                type: 'string'
-            },
-            paymentMethod: {
-                type: 'string'
-            },
-            cart: {
+            items: {
                 type: 'array',
+                minItems: 1,
                 items: {
                     type: 'object',
                     properties: {
-                        id: {
+                        productId: {
+                            type: 'number'
+                        },
+                        title: {
                             type: 'string'
                         },
                         price: {
-                            type: 'number'
+                            type: 'number',
+                            minimum: 0
                         },
                         quantity: {
-                            type: 'number'
+                            type: 'number',
+                            minimum: 1
                         }
                     },
-                    required: ['id', 'price', 'quantity']
+                    required: ['productId', 'title', 'price', 'quantity']
                 }
+            },
+            totalAmount: {
+                type: 'number',
+                minimum: 0
             }
         },
-        required: []
+        required: ['customerName', 'customerEmail', 'items', 'totalAmount']
     }
 };
 

@@ -6,35 +6,67 @@ import { sendMail } from '../utils';
 import { env } from '../helpers';
 class Service extends ServiceFactory<Build> {
     async createOrder (data: Type.body, code: Code) {
+        // Validate items array is not empty
+        if (!data.items || data.items.length === 0) {
+            const error: any = new Error('Cart cannot be empty');
+            error.statusCode = 400;
+            throw error;
+        }
+
+        // Validate all quantities are positive integers
+        for (const item of data.items) {
+            if (!Number.isInteger(item.quantity) || item.quantity < 1) {
+                const error: any = new Error('All quantities must be positive integers');
+                error.statusCode = 400;
+                throw error;
+            }
+        }
+
+        // Calculate expected total
+        const calculatedTotal = data.items.reduce(
+            (total, item) => total + item.price * item.quantity,
+            0
+        );
+
+        // Verify totalAmount matches calculated total (allow small floating point differences)
+        const tolerance = 0.01; // 1 cent tolerance for floating point arithmetic
+        if (Math.abs(calculatedTotal - data.totalAmount) > tolerance) {
+            const error: any = new Error(
+                `Total amount mismatch. Expected €${calculatedTotal.toFixed(2)}, received €${data.totalAmount.toFixed(2)}`
+            );
+            error.statusCode = 400;
+            throw error;
+        }
+
         const order = await super.create({
-            name: data.name,
-            email: data.email,
-            cardNumber: data.cardNumber,
-            expiry: data.expiry,
-            cvv: data.cvv,
-            phoneNumber: data.phoneNumber,
-            paymentMethod: data.paymentMethod,
+            customerName: data.customerName,
+            customerEmail: data.customerEmail,
+            cardNumber: null,
+            expiry: null,
+            cvv: null,
+            phoneNumber: null,
+            paymentMethod: null,
             code: code.code,
-            total: data.cart.reduce((total, product) => total + product.price * product.quantity, 0),
+            totalAmount: data.totalAmount,
             assignedTo: code.assignedTo,
         });
-        await Controller.linkProducts(order.id, data.cart);
+        await Controller.linkProducts(order.id, data.items);
 
         // Generate HTML email
-        const emailHtml = await this.generateEmail(order, data.cart);
-        const plainText = `Commande créée avec succès avec l'identifiant ${order.id}.\n\nVos articles:\n${data.cart.map(product => `${product.quantity} x ${product.title}`).join('\n')}\n\nTotal: €${order.total}`;
+        const emailHtml = await this.generateEmail(order, data.items);
+        const plainText = `Commande créée avec succès avec l'identifiant ${order.id}.\n\nVos articles:\n${data.items.map(product => `${product.quantity} x ${product.title}`).join('\n')}\n\nTotal: €${order.totalAmount}`;
 
         // Send confirmation email to customer
         sendMail(
-            data.email,
+            data.customerEmail,
             'Confirmation de commande - Soul Shop',
             plainText,
             emailHtml
         ).catch(error => console.error(error));
 
         // Send notification email to shop
-        const shopEmailHtml = await this.generateEmailToShop(order, data.cart);
-        const shopPlainText = `Nouvelle commande avec l'identifiant ${order.id}.\n\nClient: ${order.name} (${order.email})\nTéléphone: ${order.phoneNumber}\nMéthode de paiement: ${order.paymentMethod}\n\nArticles:\n${data.cart.map(product => `${product.quantity} x ${product.title} - €${(product.price * product.quantity).toFixed(2)}`).join('\n')}\n\nTotal: €${order.total}`;
+        const shopEmailHtml = await this.generateEmailToShop(order, data.items);
+        const shopPlainText = `Nouvelle commande avec l'identifiant ${order.id}.\n\nClient: ${order.customerName} (${order.customerEmail})\n\nArticles:\n${data.items.map(product => `${product.quantity} x ${product.title} - €${(product.price * product.quantity).toFixed(2)}`).join('\n')}\n\nTotal: €${order.totalAmount}`;
 
         sendMail(
             env.shop_email,
@@ -45,7 +77,7 @@ class Service extends ServiceFactory<Build> {
 
         return await this.getById(order.id, { include: { items: true } });
     }
-    async generateEmail (order: Build, cart: Type.body['cart']) {
+    async generateEmail (order: Build, cart: Type.body['items']) {
         // Generate cart items HTML
         const cartItemsHtml = cart.map(item => `
                                             <tr>
@@ -81,7 +113,7 @@ class Service extends ServiceFactory<Build> {
                     <tr>
                         <td style="padding: 40px 30px;">
                             <p style="margin: 0 0 20px; color: #333333; font-size: 16px; line-height: 1.6;">
-                                Bonjour ${order.name},
+                                Bonjour ${order.customerName},
                             </p>
                             
                             <p style="margin: 0 0 20px; color: #333333; font-size: 16px; line-height: 1.6;">
@@ -110,7 +142,7 @@ class Service extends ServiceFactory<Build> {
                                                     <span style="color: #333333; font-size: 16px; font-weight: 600;">Total</span>
                                                 </td>
                                                 <td align="right" style="padding: 15px 0 0;">
-                                                    <span style="color: #667eea; font-size: 18px; font-weight: 700;">€${order.total.toFixed(2)}</span>
+                                                    <span style="color: #667eea; font-size: 18px; font-weight: 700;">€${order.totalAmount.toFixed(2)}</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -151,7 +183,7 @@ class Service extends ServiceFactory<Build> {
         return html;
     }
 
-    async generateEmailToShop (order: Build, cart: Type.body['cart']) {
+    async generateEmailToShop (order: Build, cart: Type.body['items']) {
         // Generate cart items HTML
         const cartItemsHtml = cart.map(item => `
                                             <tr>
@@ -221,7 +253,7 @@ class Service extends ServiceFactory<Build> {
                                                     <span style="color: #6c757d; font-size: 14px;">Nom :</span>
                                                 </td>
                                                 <td style="padding: 8px 0;">
-                                                    <span style="color: #333333; font-size: 14px; font-weight: 600;">${order.name}</span>
+                                                    <span style="color: #333333; font-size: 14px; font-weight: 600;">${order.customerName}</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -229,23 +261,7 @@ class Service extends ServiceFactory<Build> {
                                                     <span style="color: #6c757d; font-size: 14px;">Email :</span>
                                                 </td>
                                                 <td style="padding: 8px 0;">
-                                                    <span style="color: #333333; font-size: 14px;">${order.email}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 8px 0;">
-                                                    <span style="color: #6c757d; font-size: 14px;">Téléphone :</span>
-                                                </td>
-                                                <td style="padding: 8px 0;">
-                                                    <span style="color: #333333; font-size: 14px;">${order.phoneNumber}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 8px 0;">
-                                                    <span style="color: #6c757d; font-size: 14px;">Méthode de paiement :</span>
-                                                </td>
-                                                <td style="padding: 8px 0;">
-                                                    <span style="color: #333333; font-size: 14px; font-weight: 600;">${order.paymentMethod}</span>
+                                                    <span style="color: #333333; font-size: 14px;">${order.customerEmail}</span>
                                                 </td>
                                             </tr>
                                             ${order.code !== '333333' ? `
@@ -288,7 +304,7 @@ class Service extends ServiceFactory<Build> {
                                                     <span style="color: #333333; font-size: 18px; font-weight: 700;">Total</span>
                                                 </td>
                                                 <td align="right" style="padding: 20px 0 0;">
-                                                    <span style="color: #10b981; font-size: 20px; font-weight: 700;">€${order.total.toFixed(2)}</span>
+                                                    <span style="color: #10b981; font-size: 20px; font-weight: 700;">€${order.totalAmount.toFixed(2)}</span>
                                                 </td>
                                             </tr>
                                         </table>

@@ -22,10 +22,14 @@
         "test": "jest --watchAll",
         "format": "prettier --write ./src",
         "db:gen": "prisma generate",
-        "db:migrate": "prisma migrate dev --name dev",
+        "db:migrate": "prisma migrate dev",
         "db:deploy": "prisma migrate deploy",
         "db:reset": "npm i && prisma migrate reset --force && prisma migrate dev --name dev",
+        "db:seed": "ts-node prisma/seed.ts",
         "create": "prisma generate && ts-node src/helpers/generator.ts && prettier --write ./src"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
     },
     "dependencies": {
         "@fastify/cors": ">=11.0.1",

@@ -13,14 +13,22 @@ const routes: FastifyPluginCallback = server => {
         schema: Schema.create,
         preHandler: auth,
         handler: async (request: FastifyRequest<{ Body: Type.body; }>, reply: FastifyReply) => {
-            console.log("request.body", request.body);
-            console.log("request.user", request.user);
-            const code = await codeService.getById((request.user as { id: string; }).id);
-            if (!code) {
-                return reply.status(401).send({ error: 'Code not found' });
+            try {
+                const code = await codeService.getById((request.user as { id: string; }).id);
+                if (!code) {
+                    return reply.status(401).send({ error: 'Invalid authentication token' });
+                }
+                const result = await Service.createOrder(request.body, code);
+                reply.send({
+                    success: true,
+                    orderId: result.id,
+                    message: 'Order created successfully'
+                });
+            } catch (error: any) {
+                const statusCode = error.statusCode || 500;
+                const message = error.message || 'Internal server error';
+                reply.status(statusCode).send({ error: message });
             }
-            const result = await Service.createOrder(request.body, code);
-            reply.send({ data: result });
         }
     });
 

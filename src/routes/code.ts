@@ -22,9 +22,18 @@ const routes: FastifyPluginCallback = server => {
         url: '/login',
         schema: Schema.login,
         handler: async (request: FastifyRequest<{ Body: { code: string; }; }>, reply: FastifyReply) => {
-            const result = await Service.login(request.body.code);
-            const token = server.jwt.sign({ id: result.id });
-            reply.send({ data: { token } });
+            try {
+                if (!request.body.code || request.body.code.trim() === '') {
+                    return reply.status(400).send({ error: 'Invalid code format' });
+                }
+                const result = await Service.login(request.body.code);
+                const token = server.jwt.sign({ id: result.id });
+                reply.send({ token, message: 'Login successful' });
+            } catch (error: any) {
+                const statusCode = error.statusCode || 500;
+                const message = error.message || 'Internal server error';
+                reply.status(statusCode).send({ error: message });
+            }
         }
     });
 

@@ -8,8 +8,8 @@ class Service extends ServiceFactory<Build> {
     async login (code: string) {
         const result = await Controller.login(code);
         if (!result) {
-            const error: any = new Error('Code not found');
-            error.statusCode = '404';
+            const error: any = new Error('Invalid code');
+            error.statusCode = 401;
             throw error;
         }
         return result;

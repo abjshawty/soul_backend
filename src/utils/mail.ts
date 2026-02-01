@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 export const sendMail = async (to: string, subject: string, text: string, html?: string) => {
     console.log("Sending mail to", to);
     const mailOptions = {
-        from: `"Edengo", ${env.mailUser}`,
+        from: `"Soul Shop" <${env.mailUser}>`,
         to,
         subject,
         text,
