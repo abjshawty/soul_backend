@@ -48,7 +48,7 @@ class Service extends ServiceFactory<Build> {
             paymentMethod: null,
             code: code.code,
             totalAmount: data.totalAmount,
-            assignedTo: code.assignedTo,
+            assignedTo: code.role,
         });
         await Controller.linkProducts(order.id, data.items);
 

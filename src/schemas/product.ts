@@ -5,7 +5,7 @@ export const search = {
         type: 'object',
         properties: {
             id: {
-                type: 'string'
+                type: 'number'
             },
             title: {
                 type: 'string'
@@ -40,7 +40,7 @@ export const find = {
         type: 'object',
         properties: {
             id: {
-                type: 'string'
+                type: 'number'
             },
             title: {
                 type: 'string'
@@ -74,7 +74,7 @@ export const getOrDelete = {
     params: {
         type: 'object',
         properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
         },
         required: ['id']
     }
@@ -116,7 +116,7 @@ export const update = {
     params: {
         type: 'object',
         properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
         },
         required: ['id']
     },

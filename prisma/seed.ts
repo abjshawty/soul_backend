@@ -19,7 +19,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.8,
                 genre: 'RPG',
-                category: 'Premium',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800',
                 description: 'An epic dark fantasy action RPG from the creators of Dark Souls. Explore a vast open world filled with danger and discovery.',
                 support: 'PC'
@@ -29,7 +29,7 @@ async function main() {
                 price: 39.99,
                 rating: 4.9,
                 genre: 'RPG',
-                category: 'Premium',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800',
                 description: 'An award-winning open-world RPG. Play as Geralt of Rivia, a monster hunter on a quest to find his adopted daughter.',
                 support: 'PC'
@@ -39,7 +39,7 @@ async function main() {
                 price: 49.99,
                 rating: 4.3,
                 genre: 'RPG',
-                category: 'Premium',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800',
                 description: 'An open-world RPG set in Night City, a megalopolis obsessed with power, glamour and body modification.',
                 support: 'PC'
@@ -51,7 +51,7 @@ async function main() {
                 price: 49.99,
                 rating: 4.9,
                 genre: 'Action',
-                category: 'Premium',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=800',
                 description: 'An epic journey of a father and son through the Norse realms. Brutal combat meets emotional storytelling.',
                 support: 'PC'
@@ -61,7 +61,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.7,
                 genre: 'Action',
-                category: 'Premium',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1556438064-2d7646166914?w=800',
                 description: 'A challenging action-adventure game set in late 1500s Sengoku Japan. Master the blade and embrace death.',
                 support: 'PC'
@@ -73,7 +73,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.6,
                 genre: 'Strategy',
-                category: 'Deluxe',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800',
                 description: 'Build an empire to stand the test of time. Lead your civilization from the Stone Age to the Information Age.',
                 support: 'PC'
@@ -83,7 +83,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.5,
                 genre: 'Strategy',
-                category: 'Deluxe',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800',
                 description: 'The epic conclusion to the Total War: Warhammer trilogy. Command legendary lords and monstrous creatures.',
                 support: 'PC'
@@ -95,7 +95,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.8,
                 genre: 'Racing',
-                category: 'Premium',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800',
                 description: 'Explore the vibrant open world of Mexico in the ultimate racing game. Hundreds of cars and endless adventure.',
                 support: 'PC'
@@ -105,7 +105,7 @@ async function main() {
                 price: 69.99,
                 rating: 4.4,
                 genre: 'Racing',
-                category: 'Premium',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1612992541098-75e9e9e01feb?w=800',
                 description: 'Experience the official game of the 2024 Formula 1 season. Race as your favorite drivers on authentic circuits.',
                 support: 'PC'
@@ -117,7 +117,7 @@ async function main() {
                 price: 26.95,
                 rating: 4.9,
                 genre: 'Adventure',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1625805866449-3589fe3f71a3?w=800',
                 description: 'Build, explore, and survive in infinite procedurally generated worlds. The ultimate creative sandbox.',
                 support: 'PC'
@@ -127,7 +127,7 @@ async function main() {
                 price: 9.99,
                 rating: 4.8,
                 genre: 'Adventure',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800',
                 description: 'A 2D sandbox adventure game. Dig, fight, explore, and build your way through a procedurally generated world.',
                 support: 'PC'
@@ -139,7 +139,7 @@ async function main() {
                 price: 69.99,
                 rating: 4.3,
                 genre: 'Shooter',
-                category: 'Premium',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800',
                 description: 'The latest installment in the legendary Call of Duty franchise. Intense multiplayer and gripping campaign.',
                 support: 'PC'
@@ -149,7 +149,7 @@ async function main() {
                 price: 39.99,
                 rating: 4.7,
                 genre: 'Shooter',
-                category: 'Premium',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800',
                 description: 'Rip and tear through hordes of demons in this brutal first-person shooter. Hell on Earth never looked so good.',
                 support: 'PC'
@@ -161,7 +161,7 @@ async function main() {
                 price: 9.99,
                 rating: 4.9,
                 genre: 'Puzzle',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800',
                 description: 'A mind-bending puzzle game with innovative portal mechanics. Features hilarious writing and co-op mode.',
                 support: 'PC'
@@ -171,7 +171,7 @@ async function main() {
                 price: 29.99,
                 rating: 4.6,
                 genre: 'Puzzle',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1612992541098-75e9e9e01feb?w=800',
                 description: 'The classic block-stacking game reimagined with stunning visuals and an immersive soundtrack.',
                 support: 'PC'
@@ -183,7 +183,7 @@ async function main() {
                 price: 59.99,
                 rating: 4.7,
                 genre: 'Fighting',
-                category: 'Deluxe',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800',
                 description: 'The latest entry in the legendary fighting game series. Master new mechanics and iconic characters.',
                 support: 'PC'
@@ -193,7 +193,7 @@ async function main() {
                 price: 49.99,
                 rating: 4.5,
                 genre: 'Fighting',
-                category: 'Deluxe',
+                category: 'Rio_De_Janeiro',
                 image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800',
                 description: 'The brutal fighting game returns with cinematic story mode and bone-crushing fatalities.',
                 support: 'PC'
@@ -205,7 +205,7 @@ async function main() {
                 price: 19.99,
                 rating: 4.9,
                 genre: 'Platformer',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=800',
                 description: 'A challenging platformer about climbing a mountain. Tight controls, great story, and incredible soundtrack.',
                 support: 'PC'
@@ -215,7 +215,7 @@ async function main() {
                 price: 14.99,
                 rating: 4.9,
                 genre: 'Platformer',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1556438064-2d7646166914?w=800',
                 description: 'A beautifully hand-drawn metroidvania. Explore a vast interconnected underground world.',
                 support: 'PC'
@@ -227,7 +227,7 @@ async function main() {
                 price: 12.99,
                 rating: 4.4,
                 genre: 'Arcade',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800',
                 description: 'The classic arcade game reimagined with modern graphics and addictive gameplay.',
                 support: 'PC'
@@ -237,7 +237,7 @@ async function main() {
                 price: 4.99,
                 rating: 4.8,
                 genre: 'Arcade',
-                category: 'Standard',
+                category: 'Euphoria',
                 image: 'https://images.unsplash.com/photo-1625805866449-3589fe3f71a3?w=800',
                 description: 'A time survival game with roguelite elements. Mow down thousands of monsters and survive the night.',
                 support: 'PC'

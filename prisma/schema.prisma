@@ -13,7 +13,7 @@ model Product {
     price           Float
     rating          Float             @default(0)
     genre           String
-    category        String
+    category        Category
     image           String
     description     String            @db.Text
     support         String            @default("PC")
@@ -22,17 +22,22 @@ model Product {
     orderedProducts OrderedProducts[]
 }
 
+enum Category {
+    Rio_De_Janeiro
+    Euphoria
+}
+
 model Code {
-    id         String   @id @default(uuid())
+    id         Int      @id @default(autoincrement())
     code       String
     discount   Float
-    assignedTo String
+    role String
     createdAt  DateTime @default(now())
     updatedAt  DateTime @updatedAt
 }
 
 model Order {
-    id            String            @id @default(uuid())
+    id            Int            @id @default(autoincrement())
     customerName  String
     customerEmail String
     cardNumber    String?
@@ -50,12 +55,12 @@ model Order {
 }
 
 model OrderedProducts {
-    id        String   @id @default(uuid())
-    orderId   String
+    id        Int @id @default(autoincrement())
+    orderId   Int
     productId Int
     quantity  Int
-    order     Order    @relation(fields: [orderId], references: [id])
-    product   Product  @relation(fields: [productId], references: [id])
+    order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }

@@ -15,7 +15,7 @@ export default async () => {
 		if (!code) {
 			Code.create({
 				code: '333333',
-				assignedTo: 'Admin',
+				role: 'Admin',
 				discount: 0
 			});
 		}

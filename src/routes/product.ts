@@ -108,6 +108,20 @@ const routes: FastifyPluginCallback = server => {
             reply.send({ data: { message: 'Admin deleted successfully' } });
         }
     });
+
+    server.route({
+        method: 'DELETE',
+        url: '/',
+        schema: Schema.search,
+        preHandler: auth,
+        handler: async (request: FastifyRequest<{ Params: { id: string; }; }>, reply: FastifyReply) => {
+            const result = await Service.deleteMany({});
+            if (!result) {
+                return reply.status(404).send({ error: 'Admin not found' });
+            }
+            reply.send({ data: { message: 'Admin deleted successfully' } });
+        }
+    });
 };
 
 export default routes;

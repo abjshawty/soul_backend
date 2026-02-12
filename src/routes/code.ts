@@ -27,7 +27,7 @@ const routes: FastifyPluginCallback = server => {
                     return reply.status(400).send({ error: 'Invalid code format' });
                 }
                 const result = await Service.login(request.body.code);
-                const token = server.jwt.sign({ id: result.id });
+                const token = server.jwt.sign({ id: result.id, role: result.role });
                 reply.send({ token, message: 'Login successful' });
             } catch (error: any) {
                 const statusCode = error.statusCode || 500;
