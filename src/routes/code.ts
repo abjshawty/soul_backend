@@ -93,7 +93,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.getOrDelete,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; }>, reply: FastifyReply) => {
             const result = await Service.getById(request.params.id);
             if (!result) {
                 return reply.status(404).send({ error: 'Admin not found' });
@@ -107,7 +107,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.update,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; Body: Partial<Build>; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; Body: Partial<Build>; }>, reply: FastifyReply) => {
             const result = await Service.update(request.params.id, request.body);
             if (!result) {
                 return reply.status(404).send({ error: 'Admin not found' });
@@ -121,7 +121,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.getOrDelete,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; }>, reply: FastifyReply) => {
             const result = await Service.delete(request.params.id);
             if (!result) {
                 return reply.status(404).send({ error: 'Admin not found' });

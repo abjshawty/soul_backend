@@ -14,7 +14,7 @@ const routes: FastifyPluginCallback = server => {
         preHandler: auth,
         handler: async (request: FastifyRequest<{ Body: Type.body; }>, reply: FastifyReply) => {
             try {
-                const code = await codeService.getById((request.user as { id: string; }).id);
+                const code = await codeService.getById((request.user as { id: number; }).id);
                 if (!code) {
                     return reply.status(401).send({ error: 'Invalid authentication token' });
                 }
@@ -88,7 +88,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.getOrDelete,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; }>, reply: FastifyReply) => {
             const result = await Service.getById(request.params.id);
             if (!result) {
                 return reply.status(404).send({ error: 'Order not found' });
@@ -102,7 +102,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.update,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; Body: Partial<Build>; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; Body: Partial<Build>; }>, reply: FastifyReply) => {
             const result = await Service.update(request.params.id, request.body);
             if (!result) {
                 return reply.status(404).send({ error: 'Order not found' });
@@ -116,7 +116,7 @@ const routes: FastifyPluginCallback = server => {
         url: '/:id',
         schema: Schema.getOrDelete,
         preHandler: auth,
-        handler: async (request: FastifyRequest<{ Params: { id: string; }; }>, reply: FastifyReply) => {
+        handler: async (request: FastifyRequest<{ Params: { id: number; }; }>, reply: FastifyReply) => {
             const result = await Service.delete(request.params.id);
             if (!result) {
                 return reply.status(404).send({ error: 'Order not found' });

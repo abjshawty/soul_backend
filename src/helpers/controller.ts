@@ -73,7 +73,7 @@ class Controller<T extends object> {
 	 * @throws {Error} Will throw a 404 error if record is not found
 	 */
 	async getById (
-		id: string,
+		id: number,
 		options?: {
 			include?: { [key: string]: boolean; };
 		}
@@ -236,7 +236,7 @@ class Controller<T extends object> {
 	 * @returns The updated record
 	 * @throws {Error} Will throw a 500 error if update fails
 	 */
-	async update (id: string, data: Partial<T>): Promise<T> {
+	async update (id: number, data: Partial<T>): Promise<T> {
 		try {
 			return await this.collection.update({
 				where: { id },
@@ -273,7 +273,7 @@ class Controller<T extends object> {
 	 * @returns The deleted record
 	 * @throws {Error} Will throw a 500 error if deletion fails
 	 */
-	async delete (id: string): Promise<T> {
+	async delete (id: number): Promise<T> {
 		try {
 			return await this.collection.delete({
 				where: { id }

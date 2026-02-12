@@ -169,14 +169,14 @@ src/
 class ControllerFactory<T> {
   create(data: T): Promise<T>
   getAll(options?): Promise<T[]>
-  getById(id: string, options?): Promise<T | null>
+  getById(id: number, options?): Promise<T | null>
   find(where: Partial<T>): Promise<T | null>
   search(where: Partial<T>, options?): Promise<T[]>
   paginatedSearch(where, page, size, searchFields): Promise<PaginatedResult<T>>
   count(where: Partial<T>): Promise<number>
-  update(id: string, data: Partial<T>): Promise<T | null>
+  update(id: number, data: Partial<T>): Promise<T | null>
   updateMany(where, data): Promise<number>
-  delete(id: string): Promise<T | null>
+  delete(id: number): Promise<T | null>
   deleteMany(where): Promise<number>
 
   // Export methods
@@ -216,7 +216,7 @@ class ServiceFactory<T> {
 
   create(data: T): Promise<T>
   getAll(orderBy?): Promise<T[]>
-  getById(id: string, options?): Promise<T | null>
+  getById(id: number, options?): Promise<T | null>
   find(where): Promise<T | null>
   search(where, options?): Promise<T[]>
   paginatedSearch(where, page, size, searchFields): Promise<PaginatedResult<T>>
@@ -241,7 +241,7 @@ class ServiceFactory<T> {
 ### Product
 ```typescript
 {
-  id: string (UUID)
+  id: number (UUID)
   title: string
   price: number
   rating: number (default: 0)
@@ -259,7 +259,7 @@ class ServiceFactory<T> {
 ### Code
 ```typescript
 {
-  id: string (UUID)
+  id: number (UUID)
   code: string
   discount: number
   assignedTo: string
@@ -273,7 +273,7 @@ class ServiceFactory<T> {
 ### Order
 ```typescript
 {
-  id: string (UUID)
+  id: number (UUID)
   name: string
   email: string
   cardNumber: string
@@ -293,7 +293,7 @@ class ServiceFactory<T> {
 ### OrderedProducts
 ```typescript
 {
-  id: string (UUID)
+  id: number (UUID)
   orderId: string (FK)
   productId: string (FK)
   quantity: number

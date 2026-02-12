@@ -3,7 +3,7 @@ import { ControllerFactory } from '../helpers';
 import { client } from '../db';
 
 class Controller extends ControllerFactory<Build> {
-    async linkProducts (orderId: string, products: { productId: number; title: string; price: number; quantity: number; }[]) {
+    async linkProducts (orderId: number, products: { productId: number; title: string; price: number; quantity: number; }[]) {
         await client.orderedProducts.createMany({
             data: products.map(product => ({
                 orderId,

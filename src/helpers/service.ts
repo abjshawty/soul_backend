@@ -82,7 +82,7 @@ class Service<T extends object> {
 	 * @throws Will throw a 500 error if retrieval fails
 	 */
 	async getById (
-		id: string,
+		id: number,
 		options?: {
 			include?: { [key: string]: boolean; };
 		}
@@ -148,7 +148,7 @@ class Service<T extends object> {
 	 * @returns The updated record
 	 * @throws Will throw an error if update fails
 	 */
-	async update (id: string, data: Partial<T>) {
+	async update (id: number, data: Partial<T>) {
 		try {
 			return await this.controller.update(id, data);
 		} catch (error: any) {
@@ -179,7 +179,7 @@ class Service<T extends object> {
 	 * @returns The deleted record
 	 * @throws Will throw an error if deletion fails
 	 */
-	async delete (id: string) {
+	async delete (id: number) {
 		try {
 			return await this.controller.delete(id);
 		} catch (error: any) {

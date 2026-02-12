@@ -45,7 +45,7 @@ Error: { "error": "Invalid code" }
   phoneNumber: string;
   paymentMethod: string;
   cart: Array<{
-    id: string;  // UUID
+    id: number;  // UUID
     title: string;
     price: number;
     quantity: number;
