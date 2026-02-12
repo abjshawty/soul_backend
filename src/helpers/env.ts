@@ -33,3 +33,4 @@ export const mailUser: string = process.env.MAIL_USER || '';
 export const mailPassword: string = process.env.MAIL_PASSWORD || '';
 export const shop_email: string = process.env.SHOP_EMAIL || 'timmykb@protonmail.com';
 
+export const resendApiKey: string = process.env.RESEND_API_KEY || '';

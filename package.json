@@ -24,7 +24,7 @@
         "db:gen": "prisma generate",
         "db:migrate": "prisma migrate dev",
         "db:deploy": "prisma migrate deploy",
-        "db:reset": "npm i && prisma migrate reset --force && prisma migrate dev --name dev",
+        "db:reset": "npm i && prisma migrate reset --skip-seed --force && prisma migrate dev --name dev",
         "db:seed": "ts-node prisma/seed.ts",
         "create": "prisma generate && ts-node src/helpers/generator.ts && prettier --write ./src"
     },
@@ -49,7 +49,8 @@
         "pdfkit-table": "^0.1.99",
         "prettier": "^3.5.3",
         "prisma": "^6.17.1",
-        "redis": "^5.5.6"
+        "redis": "^5.5.6",
+        "resend": "^6.9.2"
     },
     "devDependencies": {
         "@types/death": ">=1.1.5",
