@@ -17,6 +17,7 @@
     },
     "scripts": {
         "build": "tsc",
+	"postinstall": "prisma generate",
         "dev": "nodemon --watch .env src/index.ts",
         "start": "node build/index.js",
         "test": "jest --watchAll",
