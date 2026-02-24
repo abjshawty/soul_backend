@@ -25,6 +25,10 @@ model Product {
 enum Category {
     Rio_De_Janeiro
     Euphoria
+    Jakarta
+    Bogotta
+    Doha
+    Havana
 }
 
 model Code {
